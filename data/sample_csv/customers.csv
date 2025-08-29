@@ -1,0 +1,20 @@
+customer_id,name,segment,industry,region
+C-100,Acme Corp,Enterprise,Manufacturing,EMEA
+C-200,Globex,SMB,Retail,Americas
+C-300,TechnoSol,Enterprise,Technology,EMEA
+C-400,MegaMart,Enterprise,Retail,Americas
+C-500,MidSize GmbH,SMB,Manufacturing,EMEA
+C-600,Innovation Labs,Enterprise,Technology,Americas
+C-700,Precision Tools,SMB,Manufacturing,EMEA
+C-800,RetailChain USA,SMB,Retail,Americas
+C-900,EuroManufacture,Enterprise,Manufacturing,EMEA
+C-1000,StartupTech,SMB,Technology,Americas
+C-1100,GermanAuto,Enterprise,Automotive,EMEA
+C-1200,MexicoDistrib,SMB,Distribution,Americas
+C-1300,SwissFinance,Enterprise,Financial,EMEA
+C-1400,USAManufacture,Enterprise,Manufacturing,Americas
+C-1500,FrenchRetail,SMB,Retail,EMEA
+C-1600,TexasOil,SMB,Energy,Americas
+C-1700,EuropeParts,Enterprise,Automotive,EMEA
+C-1800,CanadianTech,SMB,Technology,Americas
+C-1900,ItalyDesign,Enterprise,Design,EMEA

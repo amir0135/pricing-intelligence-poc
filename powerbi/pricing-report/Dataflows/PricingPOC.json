@@ -1,0 +1,11 @@
+{
+  "name": "PricingPOC",
+  "entities": [
+    { "name": "Products", "source": "products.csv" },
+    { "name": "Customers", "source": "customers.csv" },
+    { "name": "Orders", "source": "orders.csv" },
+    { "name": "COGS", "source": "cogs.csv" },
+    { "name": "Policy", "source": "policy.csv" }
+  ],
+  "description": "Dataflow to load sample CSVs for Pricing POC. Use Power Query M to connect."
+}

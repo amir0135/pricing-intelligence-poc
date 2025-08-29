@@ -1,0 +1,10 @@
+{
+  "name": "PricingPOC",
+  "tables": [
+    { "name": "Products" },
+    { "name": "Customers" },
+    { "name": "Orders" },
+    { "name": "COGS" },
+    { "name": "Policy" }
+  ]
+}

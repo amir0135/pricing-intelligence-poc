@@ -1,0 +1,37 @@
+{
+  "schema": "1.0",
+  "name": "Pricing Intelligence",
+  "description": "Ask for floor, target, stretch and win curves for a given SKU and customer",
+  "actions": [
+    {
+      "name": "GetPriceRecommendation",
+      "description": "Get price recommendation for a quote",
+      "reference": "./api-reference.yaml#getPriceRecommendation"
+    },
+    {
+      "name": "ScorePrice",
+      "description": "Score a proposed price",
+      "reference": "./api-reference.yaml#scorePrice"
+    },
+    {
+      "name": "GetWinCurve",
+      "description": "Get win curve for a quote",
+      "reference": "./api-reference.yaml#getWinCurve"
+    },
+    {
+      "name": "SubmitFeedback",
+      "description": "Submit feedback",
+      "reference": "./api-reference.yaml#submitFeedback"
+    }
+  ],
+  "auth": {
+    "type": "OAuth2",
+    "authorizationUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize",
+    "tokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+    "scopes": [
+      "api://pricing-poc/user_impersonation"
+    ]
+  },
+  "target": "Microsoft365",
+  "categories": ["Sales", "Pricing"]
+}

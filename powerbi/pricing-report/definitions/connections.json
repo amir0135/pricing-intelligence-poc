@@ -1,0 +1,9 @@
+{
+  "connections": [
+    {
+      "name": "LocalCSVs",
+      "type": "File",
+      "path": "../../data/sample_csv/"
+    }
+  ]
+}

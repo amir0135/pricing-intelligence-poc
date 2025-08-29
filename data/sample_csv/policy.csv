@@ -1,0 +1,5 @@
+region,family,min_margin_pct,ceiling_pct,approval_bands_json
+EMEA,Widgets,0.15,1.8,"{\"bands\":[\"APPROVED\",\"REVIEW\",\"REJECT\"]}"
+Americas,Gadgets,0.10,2.0,"{\"bands\":[\"APPROVED\",\"REVIEW\",\"REJECT\"]}"
+EMEA,Gadgets,0.12,1.9,"{\"bands\":[\"APPROVED\",\"REVIEW\",\"REJECT\"]}"
+Americas,Widgets,0.08,2.2,"{\"bands\":[\"APPROVED\",\"REVIEW\",\"REJECT\"]}"

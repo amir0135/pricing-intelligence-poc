@@ -1,0 +1,190 @@
+openapi: 3.0.1
+info:
+  title: Pricing Intelligence API
+  version: 1.0.0
+  description: API for price recommendations, scoring, and win curves
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/recommend:
+    post:
+      summary: Get price recommendation
+      operationId: getPriceRecommendation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecommendIn'
+      responses:
+        '200':
+          description: Recommendation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendOut'
+  /api/score:
+    post:
+      summary: Score a proposed price
+      operationId: scorePrice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoreIn'
+      responses:
+        '200':
+          description: Score
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScoreOut'
+  /api/curve:
+    get:
+      summary: Get win curve
+      operationId: getWinCurve
+      parameters:
+        - in: query
+          name: sku
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: customer_id
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: quantity
+          schema:
+            type: integer
+          required: true
+        - in: query
+          name: country
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: channel
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: currency
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Win curve
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurveOut'
+  /api/feedback:
+    post:
+      summary: Submit feedback
+      operationId: submitFeedback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Feedback received
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    RecommendIn:
+      type: object
+      properties:
+        sku:
+          type: string
+        customer_id:
+          type: string
+        quantity:
+          type: integer
+        country:
+          type: string
+        channel:
+          type: string
+        currency:
+          type: string
+      required: [sku, customer_id, quantity, country, channel, currency]
+    RecommendOut:
+      type: object
+      properties:
+        floor:
+          type: number
+        target:
+          type: number
+        stretch:
+          type: number
+        p_win_at_target:
+          type: number
+        reasons:
+          type: array
+          items:
+            type: string
+    ScoreIn:
+      type: object
+      properties:
+        sku:
+          type: string
+        customer_id:
+          type: string
+        quantity:
+          type: integer
+        country:
+          type: string
+        channel:
+          type: string
+        currency:
+          type: string
+        proposed_price:
+          type: number
+      required: [sku, customer_id, quantity, country, channel, currency, proposed_price]
+    ScoreOut:
+      type: object
+      properties:
+        p_win:
+          type: number
+        expected_margin:
+          type: number
+        approval_band:
+          type: string
+        reasons:
+          type: array
+          items:
+            type: string
+    CurvePoint:
+      type: object
+      properties:
+        price:
+          type: number
+        p_win:
+          type: number
+    CurveOut:
+      type: object
+      properties:
+        curve:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurvePoint'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            api://pricing-poc/user_impersonation: User impersonation
+security:
+  - OAuth2: [api://pricing-poc/user_impersonation]

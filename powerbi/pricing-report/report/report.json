@@ -1,0 +1,15 @@
+{
+  "pages": [
+    { "name": "Overview", "visuals": ["KPI", "MarginTrend", "HitRateBySegment"] },
+    { "name": "Quote Simulator", "visuals": ["ParameterInputs", "WinCurveChart", "FloorTargetStretchCards"] },
+    { "name": "Performance", "visuals": ["DiscountHeatmap", "TimeToQuote", "RecommendationAdoption"] }
+  ],
+  "measures": [
+    { "name": "Margin", "expression": "SUM(Orders[net_price] - RELATED(COGS[cogs]))" },
+    { "name": "Hit Rate", "expression": "AVERAGE(Orders[won_flag])" },
+    { "name": "Avg Discount", "expression": "AVERAGE(Orders[discount])" }
+  ],
+  "notes": [
+    "In Quote Simulator, add Power Query function or Power Automate visual to call the API in future. For now, simulate with the curve table."
+  ]
+}
