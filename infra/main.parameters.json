@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environmentName": {
+      "value": "dev"
+    },
+    "location": {
+      "value": "East US"
+    },
+    "resourcePrefix": {
+      "value": "pricing-intel"
+    },
+    "enableHighAvailability": {
+      "value": false
+    },
+    "enableAutoScaling": {
+      "value": true
+    },
+    "minReplicas": {
+      "value": 1
+    },
+    "maxReplicas": {
+      "value": 10
+    },
+    "enableMonitoring": {
+      "value": true
+    },
+    "enableBackup": {
+      "value": false
+    },
+    "samplingRate": {
+      "value": 100
+    },
+    "databaseTier": {
+      "value": "Standard"
+    },
+    "acrSku": {
+      "value": "Standard"
+    },
+    "sqlAdminPassword": {
+      "value": "YourSecureP@ssw0rd123!"
+    }
+  }
+}
