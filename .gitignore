@@ -55,3 +55,14 @@ Thumbs.db
 
 # Node modules
 node_modules/
+
+# Legacy and documentation (optional - you can remove this section if you want to track these)
+# legacy/
+# docs/
+
+# Development artifacts
+.pytest_cache/
+.coverage
+*.egg-info/
+dist/
+build/
