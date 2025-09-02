@@ -1,18 +1,57 @@
+# Python
 __pycache__/
-.env
+*.py[cod]
 *.pyc
 *.pyo
 *.pyd
+*.so
+
+# Environment
+.env
+.env.*
+.venv/
+venv/
+env/
+
+# Database
 *.sqlite3
 *.db
+
+# Logs
 *.log
+api.log
+server.log
+test_server.log
+nohup.out
+
+# OS
 *.DS_Store
-*.vscode/
-.env.*
+.DS_Store?
+._*
+Thumbs.db
+
+# IDEs
+.vscode/
 .idea/
+*.swp
+*.swo
+
+# Jupyter
 *.ipynb_checkpoints/
+
+# Power BI
 *.pbix
 *.pbip
 *.pbids
+
+# Temporary files
 *.bak
 *.tmp
+*.temp
+*.backup
+
+# Azure
+.azure/
+
+# Node modules
+node_modules/

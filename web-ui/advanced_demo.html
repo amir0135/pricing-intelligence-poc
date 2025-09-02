@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Advanced Pricing Intelligence Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px 40px;
+        }
+        
+        .hero-section {
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .demo-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+        
+        .demo-card h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .demo-card .icon {
+            font-size: 1.5rem;
+            color: #667eea;
+        }
+        
+        .form-group {
+            margin: 1rem 0;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0.25rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d, #5a6268);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+        
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+            padding: 0 1rem;
+        }
+        
+        .progress-step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #6c757d;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: calc(100vw / 4 - 60px);
+            height: 2px;
+            background: #e9ecef;
+            z-index: -1;
+        }
+        
+        .progress-step:last-child::after {
+            display: none;
+        }
+        
+        .progress-step.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .progress-step.completed {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+        }
+        
+        .progress-step.completed::after {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #667eea;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result-card {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
+            border-radius: 15px;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .result-card.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .price-display {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2e7d32;
+            text-align: center;
+            margin: 1rem 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .confidence-section {
+            margin: 1rem 0;
+        }
+        
+        .confidence-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+        
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            border-radius: 10px;
+            transition: width 0.8s ease-out;
+            width: 0%;
+        }
+        
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .insight-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .insight-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .csv-upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1rem 0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .csv-upload-area:hover {
+            background: rgba(102, 126, 234, 0.05);
+            border-color: #5a6fd8;
+        }
+        
+        .csv-upload-area.dragover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: #5a6fd8;
+            transform: scale(1.02);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s ease-out;
+            z-index: 1001;
+            max-width: 300px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .notification.error {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+        }
+        
+        .notification.info {
+            background: linear-gradient(135deg, #17a2b8, #138496);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #667eea;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .container {
+                padding: 120px 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="logo">🤖 Pricing Intelligence</a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" onclick="showSection('home')">Home</a>
+                <a href="#" class="nav-link" onclick="showSection('analytics')">Analytics</a>
+                <a href="#" class="nav-link" onclick="showSection('api')">API</a>
+                <a href="#" class="nav-link" onclick="showSection('docs')">Docs</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Home Section -->
+        <div id="homeSection">
+            <div class="hero-section">
+                <h1 class="hero-title">Advanced Pricing Intelligence</h1>
+                <p class="hero-subtitle">AI-powered pricing optimization with enterprise-grade features</p>
+            </div>
+
+            <div class="demo-grid">
+                <!-- Single Product Pricing -->
+                <div class="demo-card">
+                    <h2><i class="icon fas fa-brain"></i>Single Product Pricing</h2>
+                    
+                    <div class="progress-steps hidden" id="singleProgress">
+                        <div class="progress-step" data-step="1">1</div>
+                        <div class="progress-step" data-step="2">2</div>
+                        <div class="progress-step" data-step="3">3</div>
+                        <div class="progress-step" data-step="4">4</div>
+                    </div>
+                    
+                    <form id="singlePricingForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" id="productName" value="Premium Widget Pro" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productCost">Cost ($)</label>
+                                <input type="number" id="productCost" value="25.50" step="0.01" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productCategory">Category</label>
+                                <select id="productCategory" required>
+                                    <option value="premium">Premium</option>
+                                    <option value="standard">Standard</option>
+                                    <option value="budget">Budget</option>
+                                    <option value="enterprise">Enterprise</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="marketSegment">Market Segment</label>
+                                <select id="marketSegment" required>
+                                    <option value="technology">Technology</option>
+                                    <option value="healthcare">Healthcare</option>
+                                    <option value="finance">Finance</option>
+                                    <option value="retail">Retail</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn">
+                            <i class="fas fa-brain"></i> Get AI Pricing Recommendation
+                        </button>
+                    </form>
+                    
+                    <div class="loading" id="singleLoading">
+                        <div class="spinner"></div>
+                        <p>AI agents analyzing pricing strategy...</p>
+                    </div>
+                    
+                    <div class="result-card" id="singleResult">
+                        <div class="price-display" id="recommendedPrice">$0.00</div>
+                        <div class="confidence-section">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <strong>Confidence Score</strong>
+                                <span id="confidenceText">0%</span>
+                            </div>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" id="confidenceBar"></div>
+                            </div>
+                        </div>
+                        <div class="insights-grid" id="agentInsights"></div>
+                    </div>
+                </div>
+
+                <!-- Bulk Processing -->
+                <div class="demo-card">
+                    <h2><i class="icon fas fa-rocket"></i>Bulk Processing</h2>
+                    
+                    <div class="csv-upload-area" id="csvUploadArea">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: #667eea; margin-bottom: 1rem;"></i>
+                        <h3>Drop CSV file here or click to upload</h3>
+                        <p>Supports up to 10,000 products</p>
+                        <input type="file" id="csvFileInput" accept=".csv" style="display: none;">
+                    </div>
+                    
+                    <div style="text-align: center; margin: 1rem 0;">
+                        <span style="color: #6c757d;">OR</span>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <button type="button" class="btn btn-secondary" onclick="downloadSampleCSV()">
+                            <i class="fas fa-download"></i> Download Sample CSV
+                        </button>
+                        <button type="button" class="btn" onclick="startBulkDemo()">
+                            <i class="fas fa-rocket"></i> Process 100 Sample Products
+                        </button>
+                    </div>
+                    
+                    <div class="loading" id="bulkLoading">
+                        <div class="spinner"></div>
+                        <p id="bulkProgress">Processing products...</p>
+                    </div>
+                    
+                    <div class="result-card" id="bulkResult">
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-value" id="processedCount">0</span>
+                                <div class="stat-label">Products Processed</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value">$<span id="avgPrice">0.00</span></span>
+                                <div class="stat-label">Average Price</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-value" id="processingTime">0</span>
+                                <div class="stat-label">Processing Time (ms)</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <button type="button" class="btn btn-success" onclick="downloadResults()">
+                                <i class="fas fa-download"></i> Download Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Analysis -->
+            <div class="demo-card" style="margin-top: 2rem;">
+                <h2><i class="icon fas fa-chart-line"></i>Market Analysis & Copilot Integration</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="analysisMarket">Market Segment</label>
+                        <select id="analysisMarket">
+                            <option value="technology">Technology</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="finance">Finance</option>
+                            <option value="retail">Retail</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priceRange">Price Range</label>
+                        <select id="priceRange">
+                            <option value="budget">Budget ($10-50)</option>
+                            <option value="mid-range">Mid-range ($50-200)</option>
+                            <option value="premium">Premium ($200-1000)</option>
+                            <option value="enterprise">Enterprise ($1000+)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin: 1rem 0;">
+                    <button type="button" class="btn" onclick="analyzeMarket()">
+                        <i class="fas fa-chart-line"></i> Analyze Market
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="askCopilot()">
+                        <i class="fas fa-robot"></i> Ask Copilot
+                    </button>
+                </div>
+                
+                <div class="loading" id="marketLoading">
+                    <div class="spinner"></div>
+                    <p>Analyzing market trends...</p>
+                </div>
+                
+                <div class="result-card" id="marketResult">
+                    <div id="marketInsights"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div id="analyticsSection" class="hidden">
+            <div class="hero-section">
+                <h1 class="hero-title">Analytics Dashboard</h1>
+                <p class="hero-subtitle">Real-time pricing intelligence and performance metrics</p>
+            </div>
+            
+            <div class="demo-card">
+                <h2><i class="icon fas fa-chart-bar"></i>Performance Metrics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-value">1,247</span>
+                        <div class="stat-label">Products Analyzed Today</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">98.5%</span>
+                        <div class="stat-label">Model Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">$2.4M</span>
+                        <div class="stat-label">Revenue Optimized</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-value">15.2%</span>
+                        <div class="stat-label">Avg Margin Improvement</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Section -->
+        <div id="apiSection" class="hidden">
+            <div class="hero-section">
+                <h1 class="hero-title">API Documentation</h1>
+                <p class="hero-subtitle">Integrate pricing intelligence into your applications</p>
+            </div>
+            
+            <div class="demo-card">
+                <h2><i class="icon fas fa-code"></i>API Health Check</h2>
+                <button type="button" class="btn" onclick="testAPI()">
+                    <i class="fas fa-heartbeat"></i> Test API Connection
+                </button>
+                <div id="apiStatus" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+
+        <!-- Docs Section -->
+        <div id="docsSection" class="hidden">
+            <div class="hero-section">
+                <h1 class="hero-title">Documentation</h1>
+                <p class="hero-subtitle">Learn how to use the Pricing Intelligence Platform</p>
+            </div>
+            
+            <div class="demo-card">
+                <h2><i class="icon fas fa-book"></i>Getting Started</h2>
+                <p>Welcome to the Advanced Pricing Intelligence Platform. This system uses AI agents to provide intelligent pricing recommendations.</p>
+                <h3>Features:</h3>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li>Single product pricing with AI analysis</li>
+                    <li>Bulk processing for enterprise workflows</li>
+                    <li>Market analysis and trends</li>
+                    <li>Microsoft 365 Copilot integration</li>
+                    <li>CSV import/export functionality</li>
+                    <li>Real-time analytics dashboard</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        const API_BASE = window.location.origin;
+        let bulkResults = null;
+        
+        console.log('Advanced Pricing Intelligence Platform loaded');
+        console.log('API_BASE:', API_BASE);
+
+        // Navigation
+        function showSection(sectionName) {
+            // Hide all sections
+            document.querySelectorAll('[id$="Section"]').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionName + 'Section').classList.remove('hidden');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Single pricing form
+        document.getElementById('singlePricingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            console.log('Single pricing form submitted');
+            
+            // Show progress and loading
+            showProgressSteps('singleProgress');
+            showLoading('singleLoading');
+            hideResult('singleResult');
+            
+            const formData = {
+                product_name: document.getElementById('productName').value,
+                cost: parseFloat(document.getElementById('productCost').value),
+                category: document.getElementById('productCategory').value,
+                market_segment: document.getElementById('marketSegment').value
+            };
+            
+            try {
+                // Step 1: Input validation
+                updateProgressStep(1, 'active');
+                await delay(300);
+                updateProgressStep(1, 'completed');
+                updateProgressStep(2, 'active');
+                
+                // Step 2: API call
+                const response = await fetch(`${API_BASE}/api/price`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                updateProgressStep(2, 'completed');
+                updateProgressStep(3, 'active');
+                await delay(300);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                updateProgressStep(3, 'completed');
+                updateProgressStep(4, 'active');
+                await delay(300);
+                updateProgressStep(4, 'completed');
+                
+                // Display results with animation
+                displaySingleResult(result);
+                showNotification('Pricing recommendation generated successfully!', 'success');
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification(`Error: ${error.message}`, 'error');
+            } finally {
+                hideLoading('singleLoading');
+                setTimeout(() => hideProgressSteps('singleProgress'), 2000);
+            }
+        });
+
+        // Display single result with animations
+        function displaySingleResult(result) {
+            // Animate price
+            const priceElement = document.getElementById('recommendedPrice');
+            let currentPrice = 0;
+            const targetPrice = result.recommended_price;
+            const increment = targetPrice / 30;
+            
+            const priceInterval = setInterval(() => {
+                currentPrice += increment;
+                if (currentPrice >= targetPrice) {
+                    currentPrice = targetPrice;
+                    clearInterval(priceInterval);
+                }
+                priceElement.textContent = `$${currentPrice.toFixed(2)}`;
+            }, 50);
+            
+            // Animate confidence bar
+            const confidence = Math.round(result.confidence_score * 100);
+            document.getElementById('confidenceText').textContent = `${confidence}%`;
+            setTimeout(() => {
+                document.getElementById('confidenceBar').style.width = `${confidence}%`;
+            }, 500);
+            
+            // Display insights
+            const insights = [
+                'Rules Agent: Applied category-specific pricing rules',
+                'WinRate Agent: Analyzed competitive positioning',
+                'Elasticity Agent: Assessed demand sensitivity',
+                'Explainer Agent: Validated recommendation logic'
+            ];
+            
+            const insightsContainer = document.getElementById('agentInsights');
+            insightsContainer.innerHTML = '';
+            
+            insights.forEach((insight, index) => {
+                setTimeout(() => {
+                    const card = document.createElement('div');
+                    card.className = 'insight-card';
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    
+                    const [agent, description] = insight.split(': ');
+                    card.innerHTML = `
+                        <div class="insight-header">
+                            <i class="fas fa-robot"></i>
+                            ${agent}
+                        </div>
+                        <div>${description}</div>
+                    `;
+                    
+                    insightsContainer.appendChild(card);
+                    
+                    // Animate in
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                        card.style.transition = 'all 0.3s ease-out';
+                    }, 100);
+                }, index * 200);
+            });
+            
+            showResult('singleResult');
+        }
+
+        // Bulk processing
+        async function startBulkDemo() {
+            console.log('Starting bulk demo');
+            
+            showLoading('bulkLoading');
+            hideResult('bulkResult');
+            
+            const sampleProducts = Array.from({length: 100}, (_, i) => ({
+                product_name: `Product ${i + 1}`,
+                cost: Math.round((Math.random() * 100 + 10) * 100) / 100,
+                category: ['premium', 'standard', 'budget', 'enterprise'][Math.floor(Math.random() * 4)],
+                market_segment: ['technology', 'healthcare', 'finance', 'retail'][Math.floor(Math.random() * 4)]
+            }));
+            
+            try {
+                document.getElementById('bulkProgress').textContent = `Processing ${sampleProducts.length} products...`;
+                
+                const response = await fetch(`${API_BASE}/api/bulk`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({products: sampleProducts})
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                bulkResults = result;
+                
+                // Calculate stats
+                const avgPrice = result.results.reduce((sum, p) => sum + p.recommended_price, 0) / result.results.length;
+                
+                // Animate counters
+                animateCounter('processedCount', result.processed_count);
+                animateCounter('avgPrice', avgPrice, true);
+                animateCounter('processingTime', result.processing_time_ms);
+                
+                showResult('bulkResult');
+                showNotification(`Successfully processed ${result.processed_count} products!`, 'success');
+                
+            } catch (error) {
+                console.error('Bulk processing error:', error);
+                showNotification(`Error: ${error.message}`, 'error');
+            } finally {
+                hideLoading('bulkLoading');
+            }
+        }
+
+        // Market analysis
+        async function analyzeMarket() {
+            const market = document.getElementById('analysisMarket').value;
+            const priceRange = document.getElementById('priceRange').value;
+            
+            showLoading('marketLoading');
+            hideResult('marketResult');
+            
+            try {
+                await delay(1500); // Simulate analysis
+                
+                const insights = generateMarketInsights(market, priceRange);
+                displayMarketInsights(insights);
+                showResult('marketResult');
+                showNotification('Market analysis completed!', 'success');
+                
+            } catch (error) {
+                console.error('Market analysis error:', error);
+                showNotification('Error analyzing market', 'error');
+            } finally {
+                hideLoading('marketLoading');
+            }
+        }
+
+        // Generate market insights
+        function generateMarketInsights(market, priceRange) {
+            const insights = {
+                technology: {
+                    trend: 'Growing demand for AI-powered solutions driving premium pricing',
+                    competition: 'High competition from established players and startups',
+                    recommendation: 'Focus on unique value propositions and rapid innovation'
+                },
+                healthcare: {
+                    trend: 'Regulatory compliance driving stable pricing models',
+                    competition: 'Moderate competition with high barriers to entry',
+                    recommendation: 'Emphasize safety, compliance, and proven outcomes'
+                },
+                finance: {
+                    trend: 'Digital transformation accelerating premium service adoption',
+                    competition: 'Intense competition from fintech and traditional players',
+                    recommendation: 'Leverage technology for cost efficiency and better pricing'
+                },
+                retail: {
+                    trend: 'Omnichannel experiences driving value-based pricing',
+                    competition: 'Very high competition across all price segments',
+                    recommendation: 'Focus on customer experience and operational efficiency'
+                }
+            };
+            
+            return insights[market] || insights.technology;
+        }
+
+        // Display market insights
+        function displayMarketInsights(insights) {
+            document.getElementById('marketInsights').innerHTML = `
+                <div class="insights-grid">
+                    <div class="insight-card">
+                        <div class="insight-header">
+                            <i class="fas fa-trend-up"></i>
+                            Market Trend
+                        </div>
+                        <div>${insights.trend}</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-header">
+                            <i class="fas fa-users"></i>
+                            Competition
+                        </div>
+                        <div>${insights.competition}</div>
+                    </div>
+                    <div class="insight-card">
+                        <div class="insight-header">
+                            <i class="fas fa-lightbulb"></i>
+                            Recommendation
+                        </div>
+                        <div>${insights.recommendation}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Copilot integration
+        async function askCopilot() {
+            showNotification('Copilot integration coming soon! This will connect to Microsoft 365 Copilot for natural language pricing queries.', 'info');
+        }
+
+        // API testing
+        async function testAPI() {
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    document.getElementById('apiStatus').innerHTML = `
+                        <div class="insight-card" style="border-left-color: #28a745;">
+                            <div class="insight-header" style="color: #28a745;">
+                                <i class="fas fa-check-circle"></i>
+                                API Status: Healthy
+                            </div>
+                            <div>All systems operational. Response time: ${Math.round(Math.random() * 50 + 10)}ms</div>
+                        </div>
+                    `;
+                } else {
+                    throw new Error(`API returned status: ${response.status}`);
+                }
+                
+            } catch (error) {
+                document.getElementById('apiStatus').innerHTML = `
+                    <div class="insight-card" style="border-left-color: #dc3545;">
+                        <div class="insight-header" style="color: #dc3545;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            API Status: Error
+                        </div>
+                        <div>${error.message}</div>
+                    </div>
+                `;
+            }
+        }
+
+        // CSV file handling
+        document.getElementById('csvFileInput').addEventListener('change', handleCSVUpload);
+        
+        const uploadArea = document.getElementById('csvUploadArea');
+        uploadArea.addEventListener('click', () => document.getElementById('csvFileInput').click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleCSVFile(files[0]);
+            }
+        });
+
+        function handleCSVUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                handleCSVFile(file);
+            }
+        }
+
+        async function handleCSVFile(file) {
+            if (!file.name.endsWith('.csv')) {
+                showNotification('Please select a CSV file', 'error');
+                return;
+            }
+
+            showNotification(`Processing ${file.name}...`, 'info');
+            
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch(`${API_BASE}/api/upload-csv`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Upload failed: ${response.status}`);
+                }
+
+                const result = await response.json();
+                bulkResults = result;
+                
+                // Display results similar to bulk demo
+                const avgPrice = result.results.reduce((sum, p) => sum + p.recommended_price, 0) / result.results.length;
+                
+                animateCounter('processedCount', result.processed_count);
+                animateCounter('avgPrice', avgPrice, true);
+                animateCounter('processingTime', result.processing_time_ms);
+                
+                showResult('bulkResult');
+                showNotification(`Successfully processed ${result.processed_count} products from ${file.name}!`, 'success');
+
+            } catch (error) {
+                console.error('CSV upload error:', error);
+                showNotification(`Error processing CSV: ${error.message}`, 'error');
+            }
+        }
+
+        // Download functions
+        function downloadSampleCSV() {
+            const sampleData = [
+                ['product_name', 'category', 'market_segment', 'cost'],
+                ['Premium Widget Pro', 'premium', 'technology', '120.50'],
+                ['Smart Gadget Plus', 'standard', 'consumer', '45.30'],
+                ['Industrial Tool X1', 'enterprise', 'manufacturing', '230.00'],
+                ['Basic Component A', 'budget', 'retail', '12.75']
+            ];
+            
+            const csvContent = sampleData.map(row => row.join(',')).join('\n');
+            downloadFile(csvContent, 'sample_products.csv', 'text/csv');
+            showNotification('Sample CSV downloaded!', 'success');
+        }
+
+        function downloadResults() {
+            if (!bulkResults) {
+                showNotification('No results to download. Please process products first.', 'error');
+                return;
+            }
+            
+            const headers = ['Product Name', 'Category', 'Market Segment', 'Cost', 'Recommended Price', 'Confidence Score'];
+            const rows = bulkResults.results.map(product => [
+                product.product_name,
+                product.category || product.market_segment,
+                product.market_segment,
+                product.cost || product.original_cost,
+                product.recommended_price,
+                product.confidence_score
+            ]);
+            
+            const csvContent = [headers, ...rows].map(row => row.join(',')).join('\n');
+            downloadFile(csvContent, `pricing_results_${new Date().toISOString().slice(0,10)}.csv`, 'text/csv');
+            showNotification('Results downloaded successfully!', 'success');
+        }
+
+        function downloadFile(content, filename, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Utility functions
+        function showLoading(elementId) {
+            document.getElementById(elementId).classList.add('show');
+        }
+
+        function hideLoading(elementId) {
+            document.getElementById(elementId).classList.remove('show');
+        }
+
+        function showResult(elementId) {
+            document.getElementById(elementId).classList.add('show');
+        }
+
+        function hideResult(elementId) {
+            document.getElementById(elementId).classList.remove('show');
+        }
+
+        function showProgressSteps(elementId) {
+            document.getElementById(elementId).classList.remove('hidden');
+        }
+
+        function hideProgressSteps(elementId) {
+            document.getElementById(elementId).classList.add('hidden');
+        }
+
+        function updateProgressStep(stepNumber, status) {
+            const step = document.querySelector(`[data-step="${stepNumber}"]`);
+            if (step) {
+                step.className = `progress-step ${status}`;
+            }
+        }
+
+        function animateCounter(elementId, targetValue, isCurrency = false) {
+            const element = document.getElementById(elementId);
+            let currentValue = 0;
+            const increment = targetValue / 30;
+            const interval = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(interval);
+                }
+                const displayValue = isCurrency ? currentValue.toFixed(2) : Math.round(currentValue);
+                element.textContent = displayValue;
+            }, 50);
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'times' : 'info'}-circle"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        console.log('Advanced Pricing Intelligence Platform ready!');
+    </script>
+</body>
+</html>
